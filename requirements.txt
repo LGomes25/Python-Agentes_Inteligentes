@@ -1,0 +1,38 @@
+# Atualização do pip (executar antes manualmente)
+# python.exe -m pip install --upgrade pip
+
+# Núcleo do LangChain
+langchain
+langchain-community
+langchain-core
+langchain-openai
+langchain-tools
+langgraph
+
+# HuggingFace + embeddings (com versões fixadas)
+langchain-huggingface==1.2.0
+huggingface-hub==0.36.2
+transformers==4.57.6
+sentence-transformers==5.2.3
+
+# Banco vetorial Chroma
+chromadb
+langchain-chroma
+
+# Utilitários de texto
+langchain-text-splitters
+wikipedia
+
+# Leitores de PDF/HTML
+pypdf
+pymupdf
+beautifulsoup4
+lxml
+
+# Utilitários gerais
+python-dotenv
+requests
+
+# Visualização
+streamlit
+rich
