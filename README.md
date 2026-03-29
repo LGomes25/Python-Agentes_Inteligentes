@@ -1,23 +1,20 @@
-# 📖 Introdução às LLMs
-Este repositório reúne os estudos e implementações realizados em uma trilha de introdução a Large Language Models (LLMs).
-O projeto está organizado em módulos e aulas, mostrando a evolução desde chamadas simples de modelos até a construção de um chatbot completo com Streamlit, LangChain e LangGraph.
+# 📖 Agentes Inteligentes
+
+Em contrução
 
 # 🚀 Estrutura do Projeto
+
 A pasta src/ contém os códigos separados por módulos e aulas:
 
-- Módulo 2 – Terminal
-- m2aula1: Introdução a LLM com chamada direta e resposta.
-- m2aula2: Uso do LangChain com messages e prompts.
-- m2aula3: Introdução ao LangGraph e suas estruturas.
-- m2aula4: Leitura de PDF e integração com LangChain/LangGraph.
-- Módulo 3 – Streamlit
-- m3aula1: Primeiros passos com Streamlit.
-- m3aula2: Backend com LangChain/LangGraph e frontend com Streamlit.
-- m3aula3: Leitura de PDF integrada ao frontend/backend.
-- m3aula4: Uso de streaming para mostrar a formação da resposta do LLM.
-- Extra: Bot com histórico como contexto, permitindo memória de conversa.
+- Módulo 1 – Fundamentos Praticos de agentes com LLMs
+- m1aula3: Primerio agente com ReAct (Reasoning + Acting)
+- m1aula4: -----------------------
+- m1aula5: -----------------------
+- m1aula6: -----------------------
+- m1aula7: -----------------------
 
 # ⚙️ Configuração do LM Studio
+
 Este projeto utiliza o LM Studio como servidor local de modelos.
 No arquivo config.py, estão definidas funções para configurar chamadas tanto via LangChain quanto via cliente OpenAI:
 
@@ -30,70 +27,171 @@ No arquivo config.py, estão definidas funções para configurar chamadas tanto 
   Isso permite alternar facilmente entre chamadas via LangChain e chamadas diretas ao servidor do LM Studio.
 
 # ⚙️ Criando um ambiente
-Utilize os comandos no terminal, dentro da raiz do projeto.
+
+Este projeto deve ser configurado em Python 3.12 para garantir compatibilidade com ChromaDB e LangChain.
+Utilize os comandos no terminal, dentro da raiz do projeto para criar o ambiente de acordo com a versão.
+caso o ambiente não torne-se ativo, use o comando no terminal: .venv\Scripts\activate
+
 ```text
-- python -m venv .venv
+py -3.12 -m venv .venv
 ```
 
-# 🖥️ Selecionando o interpretador
+# 🖥️ Selecionando o interpretador e outras config do VS Code
+
 - Ctrl + Shift + P
 - Digite: Python: Select Interpreter
 - Escolha o Python dentro de .venv
   Se não for criada automaticamente a pasta .vscode/settings.json, crie manualmente com:
+
   ```text
   {
-    "python-envs.pythonProjects": [],
-    "python.formatting.provider": "black",
+    // Interpretador Python (ajuste se mudar o nome da pasta .venv)
+    "python.defaultInterpreterPath": ".venv/Scripts/python.exe",
+
+    // Formatação automática ao salvar
     "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always"
+    },
+
+    // Prettier como formatador padrão global
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    // Configuração específica para Python
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter",
+      "editor.formatOnSave": true
+    },
+
+    // Configuração específica para JSON
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // Configuração específica para Markdown
+    "[markdown]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // Configuração específica para JavaScript/TypeScript
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // Pylance: análise de tipos e auto-import
     "python.analysis.typeCheckingMode": "basic",
-    "python.defaultInterpreterPath": ".venv/Scripts/python.exe"
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.diagnosticMode": "workspace",
+
+    // Linting (Flake8 ativo; pode trocar por Ruff se quiser)
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+
+    // Configurações do Prettier
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "prettier.printWidth": 88
   }
   ```
 
 # 📂 Estrutura de Pastas
+
 ```text
-├── src/         # Código principal (módulos e aulas)
-├── data/        # PDFs e arquivos de suporte
-├── .venv/       # Ambiente virtual
-├── .vscode/     # Configurações do VS Code
+├── src/              # Código principal (módulos e aulas)
+├── data/             # PDFs e arquivos de suporte
+├── documents/        # Arquivos de consulta
+├── .venv/            # Ambiente virtual
+├── .vscode/          # Configurações do VS Code
 ├── .gitignore
-└── README.md    # Documentação
+├── requirements.txt  # Arquivo com informacoes para instalacao dos pacotes
+└── README.md         # Documentação
 ```
 
 # 📦 Instalação das dependências
 
 Atualize o pip e instale as bibliotecas:
+
+### Via requirements.txt
+
 ```text
 - python.exe -m pip install --upgrade pip
 
-- pip list                             // verificar a lista do pip
+- pip install -r requirements.txt           // instalacao de todos os pacotes
 
-- pip install -U langchain-core
+- pip list                                  // verificar a lista do pip
+```
+
+ou
+
+### Manualmente
+
+```text
+- python.exe -m pip install --upgrade pip
+
+- pip list                                  // verificar a lista do pip
+
+**Núcleo do LangChain**
+- pip install -U langchain
 - pip install -U langchain-community
+- pip install -U langchain-core
 - pip install -U langchain-openai
-- pip install -U langchain-tools       // para decorators tipo @tools
+- pip install -U langchain-tools            // para decorators tipo @tools
 - pip install -U langgraph
-- pip install -U pypdf                 // leitor de pdf
-- pip install -U pymupdf               // leitor de pdf
-- pip install -U streamlit             // visual para o chat
+
+**HuggingFace + embeddings (com versões fixadas)**
+- pip install "langchain-huggingface==1.2.0"
+- pip install "huggingface-hub==0.36.2"
+- pip install "transformers==4.57.6"
+- pip install "sentence-transformers==4.6.1"      // gerador de embeddings - HuggingFaceEmbeddings
+
+**Banco vetorial Chroma**
+- pip install -U chromadb                   // cliente Python do ChromaDB - banco de Dados Vetorial
+- pip install -U langchain-chroma           // compatibilidade chroma com langchain
+
+**Utilitários de texto**
+- pip install -U langchain-text-splitters   // faz chunks de textos
+- pip install -U wikipedia                  // biblioteca que acessa a api do wikipedia
+
+**Leitores de PDF/HTML**
+- pip install -U pypdf                      // leitor de pdf
+- pip install -U pymupdf                    // leitor de pdf
+- pip install -U beautifulsoup4             // leitor de html
+- pip install -U lxml                       // leitor de html
+
+**Utilitários gerais**
 - pip install -U python-dotenv
 - pip install -U requests
-- pip install -U rich                  // visual para o terminal
+
+***Visualização***
+- pip install -U streamlit                  // visual para o chat
+- pip install -U rich                       // visual para o terminal
+
 ```
 
 # ▶️ Ativando e desativando o ambiente
+
 Utilize os comandos no terminal, dentro da pasta do projeto.
 
 ### Ativar
+
 ```text
 .venv\Scripts\activate
 ```
+
 ### Desativar
+
 ```text
 deactivate
 ```
+
 # 📝 Observações
-- O projeto mostra a evolução do terminal ao frontend web.
-- Cada aula traz um passo incremental na construção do chatbot.
-- Quando há PDF carregado, o conteúdo é usado como contexto para as respostas.
-- A versão final inclui memória de conversa, permitindo continuidade entre interações.
+
+- Para usar modelos HuggingFace sem limite, deve-se configurar um token no site [Link](https://huggingface.co/settings/tokens)
+  e no config.py informar diretamente conforme abaixo.
+
+```text
+set HF_TOKEN=seu_token_aqui
+```
