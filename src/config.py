@@ -19,15 +19,16 @@ if API_KEY:
 
 
 def get_langchain_model(
-    temperature: float = 0.3, max_completion_tokens: int = 500, streaming: bool = True
+    temperature: float = 0.3, max_completion_tokens: int = 500, streaming: bool = False
 ):
     """Retorna modelo configurado para uso com LangChain."""
     return ChatOpenAI(
         model=MODEL_NAME,
         base_url=BASE_URL,
-        temperature=temperature,
         max_completion_tokens=max_completion_tokens,
         streaming=streaming,
+        timeout=300,
+        max_retries=1,
     )
 
 
