@@ -9,9 +9,7 @@ A pasta src/ contém os códigos separados por módulos e aulas:
 - **Módulo 1 – Fundamentos Praticos de agentes com LLMs**
 - m1aula3: Primerio agente com ReAct (Reasoning + Acting)
 - m1aula4: Estrutura de execução com LangGraph + chamada a Tavily API
-- m1aula5: -----------------------
-- m1aula6: -----------------------
-- m1aula7: -----------------------
+- m1aula7: Mini agente de viagem com LangGraph
 
 # ⚙️ Configuração do LM Studio
 
