@@ -36,3 +36,6 @@ requests
 # Visualização
 streamlit
 rich
+
+# Cliente oficial Tavily
+tavily-python
